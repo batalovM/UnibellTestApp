@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Client Details</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/tyle.css}">
+</head>
+<body>
+<h1 th:text="${client.name}">Client Name</h1>
+
+
+<h2>Filter Contacts</h2>
+<form th:action="@{/clients/{clientId}/contacts/filter(clientId=${client.id})}" method="get">
+    <label for="type">Contact Type:</label>
+    <select id="type" name="type">
+        <option value="PHONE" th:selected="${selectedType == 'PHONE'}">Phone</option>
+        <option value="EMAIL" th:selected="${selectedType == 'EMAIL'}">Email</option>
+    </select>
+    <button type="submit">Filter</button>
+</form>
+
+
+<h2>Contacts</h2>
+<ul>
+    <li th:each="contact : ${contacts}">
+        <span th:text="${contact.type}"></span>: <span th:text="${contact.value}"></span>
+    </li>
+</ul>
+
+
+<a th:href="@{/clients/{clientId}/contacts/new(clientId=${client.id})}">Add Contact</a>
+</body>
+</html>
+

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Clients</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+</head>
+<body>
+<h1>Clients</h1>
+<a href="/clients/new">Add New Client</a>
+<ul>
+    <li th:each="client : ${clients}">
+        <a th:href="@{/clients/{id}(id=${client.id})}" th:text="${client.name}"></a>
+    </li>
+</ul>
+</body>
+</html>
